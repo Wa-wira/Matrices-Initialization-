@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {50, 20, 80, 70, 10};
+    int n = 5; // Initial size of the array
+    int temp, pos, x, i;
+
+    printf("Original array: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Sort the array in ascending order
+    for (i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    printf("Array sorted in ascending order: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Deleting an element
+    printf("Enter the location to delete element: ");
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n) {
+        printf("Deletion not possible. Invalid position.\n");
+    } else {
+        for (i = pos - 1; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        n--; // Reduce the size of the array after deletion
+        printf("Resultant array after deletion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+    }
+
+    // Reinserting the deleted element
+    printf("Enter the element to reinsert: ");
+    scanf("%d", &x);
+    printf("Enter the position to reinsert: ");
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n + 1) {
+        printf("Reinsertion not possible. Invalid position.\n");
+    } else {
+        // Shift elements to make space for the new element
+        for (i = n; i >= pos; i--) {
+            arr[i] = arr[i - 1];
+        }
+        arr[pos - 1] = x;
+        n++; // Increase the size of the array after reinsertion
+        printf("Resultant array after reinsertion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
